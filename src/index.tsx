@@ -1,32 +1,38 @@
 import ReactDOM from 'react-dom'
 
-const Son = (props: any) => {
+export const VideoHeader = (props: {videoName: string}) => {
     return <div>
-        I am son. My name is {props.name}
+        😀 {props.videoName}
+    </div>
+}
+export const VideoContent = (props: {videoContent: string}) => {
+    return <div>
+        📼 <a href={props.videoContent}>{props.videoContent}</a>
+    </div>
+}
+export const VideoDescription = (props: {videoDescription: string}) => {
+    return <div>
+        📑 {props.videoDescription}
     </div>
 }
 
-
-const Father = (props: any) => {
+export const YoutubeVideo = (props: any) => {
     return <div>
-        I am father. My name is {props.name}
-        <Son name={props.sonName} />
-    </div>
-}
-
-const Granny = (props: any) => {
-    return <div>
-        I am granny. My name is {props.name}
-        <Father name={props.fatherName} sonName={props.sonName} />
+        <VideoHeader videoName={props.title} />
+        <VideoContent videoContent={props.link} />
+        <VideoDescription videoDescription={props.description} />
     </div>
 }
 
 export const App = () => {
-    return <div>
-        <Granny name={'Бабуля'} fatherName={'Батя'} sonName={'Сын'}/>
-    </div>
+    const video = {
+        title: 'Samurai way',
+        link: 'https://www.youtube.com/watch?v=gb7gMluAeao&list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8',
+        description: 'Best free react-course'
+    }
+
+    return <YoutubeVideo video={video} />
 }
 
-ReactDOM.render(<App/>,
-    document.getElementById('root')
-)
+ReactDOM.render(<App />,
+    document.getElementById('root'))
