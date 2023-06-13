@@ -1,21 +1,29 @@
 import ReactDOM from 'react-dom'
 
-const CrazyButton = (props: any) => {
+const Son = (props: any) => {
+    return <div>
+        I am son. My name is {props.name}
+    </div>
+}
 
-    const style = {
-        color: props.fontColor,
-        backgroundColor: props.bgColor
-    }
 
-    return <button style={style}>
-        {props.title}
-    </button>
+const Father = (props: any) => {
+    return <div>
+        I am father. My name is {props.name}
+        <Son name={props.sonName} />
+    </div>
+}
+
+const Granny = (props: any) => {
+    return <div>
+        I am granny. My name is {props.name}
+        <Father name={props.fatherName} sonName={props.sonName} />
+    </div>
 }
 
 export const App = () => {
     return <div>
-        <CrazyButton title={'delete'} fontColor={'white'} bgColor={'red'}/>
-        <CrazyButton title={'add'} fontColor={'white'} bgColor={'green'}/>
+        <Granny name={'Бабуля'} fatherName={'Батя'} sonName={'Сын'}/>
     </div>
 }
 
