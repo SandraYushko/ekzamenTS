@@ -6,7 +6,7 @@ function UsersList() {
     const [users, setUsers] = useState<Array<string>>(["Bob", "Alex", "Ann"])
     const getUser = (user: string) => <li>{user}</li>
     const usersList = users.map(getUser)
-
+console.log(Array.isArray(usersList))
     return (
         <main>
             <h4>User list:</h4>
@@ -20,9 +20,8 @@ function UsersList() {
 ReactDOM.render(
     <UsersList/>, document.getElementById('root')
 );
+// Что вернёт выражение: Array.isArray(usersList)?
 
-// Что надо вставить вместо XXX, чтобы код заработал?
-// ❗ Ответ дать минимально возможным объёмом кода
 
 
 
