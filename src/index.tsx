@@ -26,14 +26,7 @@ function UsersList() {
         <main>
             <h4>User list:</h4>
             <ul>
-                {
-                    users.map(u => <User key={u.id}
-                                         id={u.id}
-                                         name={u.name}
-                                         age={u.age}
-                        />
-                    )
-                }
+                { users.map(u => <User key={u.id} {...u} />) }
             </ul>
         </main>
     )
@@ -42,7 +35,7 @@ function UsersList() {
 ReactDOM.render(
     <UsersList/>, document.getElementById('root')
 );
-// Что надо написать вместо xxx, чтобы код работал оптимально?
+// Что надо написать вместо xxx, чтобы код работал?
 
 
 
