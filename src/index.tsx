@@ -8,9 +8,17 @@ type UserType = {
     age: number
 }
 
-function User(props: UserType) {
+type UserPropsType = UserType & {
+    deleteUser: (id: number) => void
+}
+
+function User(props: UserPropsType) {
+    const deleteUser = () => props.deleteUser(props.id)
     return (
-        <li>User {props.name}: {props.age} y.o.</li>
+        <li>
+            <button onClick={deleteUser}>x</button>
+            User {props.name}: {props.age} y.o.
+        </li>
     )
 }
 
@@ -22,14 +30,19 @@ function UsersList() {
         {id: 4, name: "John", age: 30},
     ]
     const [users, setUsers] = useState<Array<UserType>>(data)
-    // Необходимо отрендерить список пользователей старше 25 лет:
-    const getOlderThen25Users = (u: UserType) => u.age > 25
-    const olderThen25Users = users.filter(getOlderThen25Users)
+    const deleteUser = (userID: number) => {
+        const filteredUsers = users.filter(u => u.id !== userID)
+        setUsers(filteredUsers)
+    }
     return (
         <main>
             <h4>User list:</h4>
             <ul>
-                { olderThen25Users.map(u => <User key={u.id} {...u}/>)}
+                {users.map(u => <User
+                    key={u.id}
+                    {...u}
+                    deleteUser={deleteUser}
+                />)}
             </ul>
         </main>
     )
@@ -38,9 +51,7 @@ function UsersList() {
 ReactDOM.render(
     <UsersList/>, document.getElementById('root')
 );
-
 // Что надо написать вместо xxx, чтобы код работал?
-
 
 
 
