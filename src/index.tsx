@@ -22,8 +22,9 @@ function UsersList() {
         {id: 4, name: "John", age: 30},
     ]
     const [users, setUsers] = useState<Array<UserType>>(data)
-    // Пользователи старше 25 лет:
-    const olderThen25Users = users.filter(u => u.age > 25)
+    // Необходимо отрендерить список пользователей старше 25 лет:
+    const getOlderThen25Users = (u: UserType) => u.age > 25
+    const olderThen25Users = users.filter(getOlderThen25Users)
     return (
         <main>
             <h4>User list:</h4>
@@ -37,7 +38,9 @@ function UsersList() {
 ReactDOM.render(
     <UsersList/>, document.getElementById('root')
 );
+
 // Что надо написать вместо xxx, чтобы код работал?
+
 
 
 
