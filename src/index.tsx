@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 function Button() {
-    return <button
-        onClick={()=>alert()}
-    >Click</button>
+    const onClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+        console.log((typeof e) === 'object')
+    }
+    return <button onClick={onClickHandler} >Click</button>
 }
 
 
@@ -13,14 +14,8 @@ ReactDOM.render(
     <Button/>, document.getElementById('root')
 );
 
-
-
-
-
-// Что надо написать вместо ххх,
-// что бы на странице появился пустой alert при клике по кнопке?
-
-
+// Какой тип данных представляет аргумент функции-обработчика?
+// Что надо написать вместо ххх, что бы в консоль вывело true?
 
 
 
